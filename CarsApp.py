@@ -37,7 +37,7 @@ def run():
     tt = st.selectbox("Transmission Type",tt_options, format_func=lambda x: tt_display[x])
 
     ## For Owner Type
-    owner_display = ('First','Second', 'Third')
+    owner_display = ('First Hand','Second Hand', 'Third Hand')
     owner_options = list(range(len(owner_display)))
     owner = st.selectbox("Owner Type",owner_options, format_func=lambda x: owner_display[x])
 
@@ -61,11 +61,14 @@ def run():
         print(features)
         prediction = model.predict(features)
         weight = [str(i) for i in prediction]
-        ans = weight
-        if ans == 0:
-            st.error('Error')
+        ans = ', '.join(weight)
+        if ans==0:
+            st.error("Error in the Inputs: Please Try Again")
+
         else:
-            st.success(ans)
+            st.success("The Price predicted is: Rs"+" "+ans)
+
+
             
 
 run()
